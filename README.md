@@ -2,13 +2,13 @@
 
 A (soon-to-be Distributed) Steady State Genetic Algorithm.  There are three functions:
 
-(make-population num-indivs genes-per-indiv)  --> new random population
+```clj
+(make-population num-indivs genes-per-indiv)  ;--> new random population
 
-(get-individual pop)  --> new untested individual
+(get-individual pop)  ;--> new untested individual
 
-(put-individual indiv pop)  --> latest population
-
-
+(put-individual indiv pop)  ;--> latest population
+```
 
 Individuals are maps {:fitness 0 :chromosome [0.3224 -0.9324 0.43214 0.001 -0.43224 ...]}
 
@@ -21,10 +21,13 @@ get-individual breeds a new individual from two adults using roulette wheel sele
 put-individual takes an individual with fitness > 0 and returns a population with the new indiv added and one other dropped out.  The killed individual is based on inverted roulette wheel selection, where lower fitness has higher chance of being selected.
 
 
-## Usage
+## Usage Examples ##
 
-;max-ones evolve a chromosome with max positive genes
+### Max Ones ###
 
+Evolve a chromosome with max positive genes
+
+```clj
 (defn max-ones [pop individuals_tested]
 	(loop [pop pop individuals_tested individuals_tested]
 	(if (= 0 individuals_tested)
@@ -36,6 +39,7 @@ put-individual takes an individual with fitness > 0 and returns a population wit
 						(recur (put-individual (assoc indiv :fitness fitness) pop) (dec individuals_tested)))))))
 
 (max-ones (make-populations 100 10000))
+```
 
 ## License
 
