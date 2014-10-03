@@ -1,11 +1,12 @@
-(ns dssga.core)
-
+(ns dssga.core
+  (:require 
+				[clojure.math.numeric-tower :refer :all]))
 
 (defn make-population [num-indivs genes-per-indiv]
 	(if (= 0 num-indivs)
 		'()
 		(cons {:fitness 0 :chromosome (vec (take num-indivs (repeatedly (fn [] (* 2 (- (* 2.0 (rand)) 1.0))))))}
-			(population (dec num-indivs) genes-per-indiv))))
+			(make-population (dec num-indivs) genes-per-indiv))))
 
 
 (defn get-individual [pop]
