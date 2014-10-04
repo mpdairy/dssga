@@ -20,6 +20,14 @@ get-individual breeds a new individual from two adults using roulette wheel sele
 
 put-individual takes an individual with fitness > 0 and returns a population with the new indiv added and one other dropped out.  The killed individual is based on inverted roulette wheel selection, where lower fitness has higher chance of being selected.
 
+## Installation ##
+
+Just add the dssga dependency to your project.clj file:
+```clj
+(defproject my-project "1.0.0"
+  :dependencies [[org.clojure/clojure "1.5.1"]
+                 [dssga "0.1.1"]])
+```
 
 ## Usage Examples ##
 
@@ -28,6 +36,8 @@ put-individual takes an individual with fitness > 0 and returns a population wit
 Evolve a chromosome with max positive genes
 
 ```clj
+(use 'dssga.core)
+
 (defn max-ones [pop individuals_tested]
 	(loop [pop pop individuals_tested individuals_tested]
 	(if (= 0 individuals_tested)
@@ -38,6 +48,7 @@ Evolve a chromosome with max positive genes
 						fitness (calc-fitness indiv)]
 						(recur (put-individual (assoc indiv :fitness fitness) pop) (dec individuals_tested)))))))
 
+;evolves population of 100 individuals, 10 genes each, for 10000 individuals (100 generations)
 (max-ones (make-population 100 10) 10000)
 ```
 

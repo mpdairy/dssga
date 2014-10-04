@@ -1,4 +1,4 @@
-(defproject dssga "0.1.0"
+(defproject dssga "0.1.1"
   :description "A (soon to be Distributed) Steady-State Genetic Algorithm"
   :url "http://github.com/mpdairy/dssga"
   :license {:name "Eclipse Public License"
