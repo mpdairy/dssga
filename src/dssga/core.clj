@@ -5,7 +5,7 @@
 (defn make-population [num-indivs genes-per-indiv]
 	(if (= 0 num-indivs)
 		'()
-		(cons {:fitness 0 :chromosome (vec (take num-indivs (repeatedly (fn [] (* 2 (- (* 2.0 (rand)) 1.0))))))}
+		(cons {:fitness 0 :chromosome (vec (take genes-per-indiv (repeatedly (fn [] (* 2 (- (* 2.0 (rand)) 1.0))))))}
 			(make-population (dec num-indivs) genes-per-indiv))))
 
 

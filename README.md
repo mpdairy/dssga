@@ -38,12 +38,12 @@ Evolve a chromosome with max positive genes
 						fitness (calc-fitness indiv)]
 						(recur (put-individual (assoc indiv :fitness fitness) pop) (dec individuals_tested)))))))
 
-(max-ones (make-populations 100 10000))
+(max-ones (make-population 100 10) 10000)
 ```
 
 ## License
 
-Copyright © 2014 FIXME
+Copyright © 2014 Matt Parker
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
