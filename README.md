@@ -52,6 +52,10 @@ Evolve a chromosome with max positive genes
 (max-ones (make-population 100 10) 10000)
 ```
 
+## Upcoming Changes ##
+
+We're going to add dssga-server and dssga-client functions that use TCP/IP so that the evolution can be distributed across a network.
+
 ## License
 
 Copyright © 2014 Matt Parker
