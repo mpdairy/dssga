@@ -1,6 +1,6 @@
 # dssga
 
-A (soon-to-be Distributed) Steady State Genetic Algorithm.  There are three functions:
+A Distributable Steady State Genetic Algorithm.  There are three functions:
 
 ```clj
 (make-population num-indivs genes-per-indiv)  ;--> new random population
@@ -25,8 +25,8 @@ put-individual takes an individual with fitness > 0 and returns a population wit
 Just add the dssga dependency to your project.clj file:
 ```clj
 (defproject my-project "1.0.0"
-  :dependencies [[org.clojure/clojure "1.5.1"]
-                 [dssga "0.1.1"]])
+:dependencies [[org.clojure/clojure "1.5.1"]
+[dssga "0.1.1"]])
 ```
 
 ## Usage Examples ##
@@ -39,14 +39,14 @@ Evolve a chromosome with max positive genes
 (use 'dssga.core)
 
 (defn max-ones [pop individuals_tested]
-	(loop [pop pop individuals_tested individuals_tested]
-	(if (= 0 individuals_tested)
-		(reduce (fn [a b] (if (> (:fitness a) (:fitness b)) a b)) {:fitness 0} pop)
-		(letfn [(calc-fitness [indiv]
-							(max 0.1 (* 1.0 (reduce (fn [a b] (+ a b)) 0 (:chromosome indiv)))))]
-			(let [indiv (get-individual pop)
-						fitness (calc-fitness indiv)]
-						(recur (put-individual (assoc indiv :fitness fitness) pop) (dec individuals_tested)))))))
+(loop [pop pop individuals_tested individuals_tested]
+(if (= 0 individuals_tested)
+(reduce (fn [a b] (if (> (:fitness a) (:fitness b)) a b)) {:fitness 0} pop)
+(letfn [(calc-fitness [indiv]
+(max 0.1 (* 1.0 (reduce (fn [a b] (+ a b)) 0 (:chromosome indiv)))))]
+(let [indiv (get-individual pop)
+fitness (calc-fitness indiv)]
+(recur (put-individual (assoc indiv :fitness fitness) pop) (dec individuals_tested)))))))
 
 ;evolves population of 100 individuals, 10 genes each, for 10000 individuals (100 generations)
 (max-ones (make-population 100 10) 10000)
